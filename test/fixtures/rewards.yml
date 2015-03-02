@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  pledge_amount: 1
+  campaign_id: 
+
+two:
+  description: MyText
+  pledge_amount: 1
+  campaign_id: 
