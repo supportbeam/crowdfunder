@@ -1,0 +1,16 @@
+<h1>Welcome</h1>
+
+<%= link_to "Start a new Campaign", new_campaign_path %>
+
+<div>
+  <% @campaigns.each do |campaign| %>
+    <h3><%= campaign.title %></h3>
+    <p>
+      Description: <%= campaign.description %><br>
+      Goal: <%= campaign.funding_goal %><br>
+      Starts: <%= campaign.start_date %><br>
+      Ends: <%= campaign.end_date %><br>
+      <%= link_to "More info", campaign_path(campaign.id) %>
+    </p>
+  <% end %>
+</div>
