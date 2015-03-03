@@ -23,4 +23,15 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-  <% end %>
+
+  <p>Rewards</p>
+	<div class="rewards-form">
+		
+	  <%= f.fields_for :rewards do |subform| %>
+		  	<%= render 'reward_fields', f: subform %>
+	  <% end %>
+	  <%= link_to_add_association 'add reward', f, :rewards %>
+	</div>
+
+	<%= f.submit %>
+<% end %>

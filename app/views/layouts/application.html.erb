@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<<<<<<< HEAD
+
 <nav id="nav">
+<%= link_to "Home", campaigns_path %>
 	<% if current_user %>
 		<%= link_to("Logout", :logout, method: :post) %>
 	<% else %>
@@ -21,9 +22,7 @@
 	<p id="notice"><%= flash[:notice] %></p>
 	<p id="alert"><%= flash[:alert] %></p>
 </div>
-=======
-<nav><%= link_to "Home", campaigns_path %></nav>
->>>>>>> jessica
+
 
 <%= yield %>
 
