@@ -14,7 +14,7 @@ Campaign.destroy_all
 		title: Faker::Company.name,
 		description: Faker::Company.bs << " " << Faker::Company.catch_phrase,
 		funding_goal: Faker::Number.number(6),
-		start_date: Faker::Date.between(Date.today, 25.days.from_now), 
+		start_date: Date.today, 
 		end_date: Faker::Date.between(25.days.from_now, 50.days.from_now)
 	})
 end
