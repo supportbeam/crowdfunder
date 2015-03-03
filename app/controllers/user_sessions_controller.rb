@@ -5,6 +5,7 @@ class UserSessionsController < ApplicationController
 
   def create
   	if @user = login(params[:email], params[:password])
+      auto_login(@user)
   		redirect_back_or_to(:signup, notice: "Login successful")
   	else
   		flash.new[:alert] = "Login failed"
