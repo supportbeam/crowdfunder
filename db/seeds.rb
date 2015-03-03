@@ -5,11 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Campaign.create!(
-  title: "Campaign 1",
-  description: "Description 1",
-  funding_goal: 500,
-  start_date: 2015-03-20,
-  end_date: 2015-04-20
-  )

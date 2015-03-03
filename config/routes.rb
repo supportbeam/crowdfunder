@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root "campaigns#index"
   resources :campaigns
 
   # The priority is based upon order of creation: first created -> highest priority.
