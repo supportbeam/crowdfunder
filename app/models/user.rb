@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :pledge
+	has_many :pledges
 	has_many :owned_projects, class_name: 'Campaign'
 	has_many :backed_projects, throught: pledges, class_name: 'Campaign'
 

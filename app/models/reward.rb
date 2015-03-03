@@ -1,5 +1,5 @@
 class Reward < ActiveRecord::Base
-	has_many :pledge
+	has_many :pledges
   belongs_to :campaign
   
 end
