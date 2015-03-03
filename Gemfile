@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -43,8 +43,12 @@ group :development, :test do
   gem 'spring'
 
   gem 'pry-rails'
-  gem 'awesome_print'
-  gem 'quiet_assets'
-  
+	gem 'awesome_print'
+	gem 'binding_of_caller'
+	gem 'better_errors'
+	gem 'quiet_assets'
+	gem 'faker'
+	gem 'rspec-rails'
+	gem 'factory_girl_rails'  
 end
 
