@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303184816) do
+ActiveRecord::Schema.define(version: 20150303204656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20150303184816) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "pledges", force: :cascade do |t|
+    t.integer  "donation_amount", null: false
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.integer  "reward_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pledges", ["campaign_id"], name: "index_pledges_on_campaign_id", using: :btree
+  add_index "pledges", ["reward_id"], name: "index_pledges_on_reward_id", using: :btree
+  add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
 
   create_table "rewards", force: :cascade do |t|
     t.text     "description"
@@ -48,5 +61,8 @@ ActiveRecord::Schema.define(version: 20150303184816) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "pledges", "campaigns"
+  add_foreign_key "pledges", "rewards"
+  add_foreign_key "pledges", "users"
   add_foreign_key "rewards", "campaigns"
 end
