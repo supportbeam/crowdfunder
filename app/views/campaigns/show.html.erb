@@ -7,6 +7,7 @@
   Goal: $<%= @campaign.funding_goal %><br>
   Starts: <%= @campaign.start_date %><br>
   Ends: <%= @campaign.end_date %>
+  
   <%= link_to "Edit", edit_campaign_path(@campaign) %>
   <%= link_to "Delete", @campaign, method: :delete, data: {confirm: "Are you sure you want to delete this campaign?"}  %>
 </p>
