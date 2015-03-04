@@ -1,15 +1,7 @@
 class PledgesController < ApplicationController
 
-	def index
-		@pledges = Pledge.all
-	end
-
 	def show
 		@pledge = Pledge.find(params[:id])
-	end
-
-	def new
-		@pledge = Pledge.new
 	end
 
 	def create
@@ -19,18 +11,7 @@ class PledgesController < ApplicationController
 		else
 			flash.now[:alert] = "Couldn't save pledge. Sorry man..."
 			render campaign_path(@pledge.campaign_id)
-	end
-
-	def edit
-		
-	end
-
-	def update
-		
-	end
-
-	def destroy
-		
+		end
 	end
 
 	private
