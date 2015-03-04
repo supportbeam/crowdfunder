@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Pledge, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.Pledge do
+  describe "pledge_sum" do
+  	it "should return the sum of all pledges for a project" do
+  		expect()
+  end
 end
