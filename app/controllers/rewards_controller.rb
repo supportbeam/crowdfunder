@@ -10,11 +10,11 @@ class RewardsController < ApplicationController
 	end
 
 	def create
-		@reward = @campaign.rewards.build(reward_params)
+		@rewards = @campaign.rewards.build(reward_params)
 		if @reward.save
       redirect_to campaigns_url, notice: "Reward successfully made!"
     else
-      flash.new[:alert] = "Error creating Reward!"
+      flash.now[:alert] = "Error creating Reward!"
       render 'campaigns/show'
     end
 	end
@@ -24,8 +24,7 @@ class RewardsController < ApplicationController
 	end
 
 	def update
-	  @reward = Reward.find(params[:id])
-	  if @reward.update_attributes(reward_params)
+	  if @campaign.update_attributes(params[:campaign])
 	    redirect_to reward_path(@reward)
 	  else
 	    render :edit

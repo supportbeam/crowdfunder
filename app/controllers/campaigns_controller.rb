@@ -1,11 +1,9 @@
 class CampaignsController < ApplicationController
+	before_filter :load_campaign, except: [:index, :new, :create]
+
 
   def index
     @campaigns = Campaign.all
-  end
-
-  def show
-    @campaign = Campaign.find(params[:id])
   end
 
   def create
@@ -20,6 +18,12 @@ class CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
+  end
+
+
+
+  def show
+    @campaign = Campaign.find(params[:id])
   end
 
   def edit
@@ -41,9 +45,15 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
-  private
+private
+	# campaign.update_attributes params[:campaign]
   def campaign_params
-    params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, :end_date)
+    params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, 
+    	:end_date, :rewards_attributes => [:description, :pledge_amount, :_destroy, :id])
   end
+
+	def load_campaign
+		@campaign = Campaign.find(params[:id])
+	end
 
 end
