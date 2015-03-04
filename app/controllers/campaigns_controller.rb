@@ -48,9 +48,7 @@ class CampaignsController < ApplicationController
 private
 	# campaign.update_attributes params[:campaign]
   def campaign_params
-    params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, 
-    	:end_date, :rewards_attributes => [:description, :pledge_amount, :_destroy, :id])
-    params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, :end_date, rewards_attributes: [:description, :pledge_amount, :_destroy])
+    params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, :end_date, rewards_attributes: [:description, :pledge_amount, :_destroy, :id])
   end
 
 	def load_campaign
