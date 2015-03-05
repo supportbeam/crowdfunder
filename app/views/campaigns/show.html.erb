@@ -1,7 +1,6 @@
 <h2>
   <%= @campaign.title %> Information
 </h2>
-<p>some user: <%= @user.first_name %> </p>
 
 <p>
   Description: <%= @campaign.description %><br>
@@ -27,8 +26,9 @@
 
   <div class="pledges">
   	<% @campaign.pledges.each do |pledge| %>
+  	<% sum = 0 %>
   	<li>
-  		Amount: $<%= pledge.donation_amount %> <br>
+  		Total Pledges: $<%= pledge.donation_amount %> <br>
  			<% end %> 
   	</li>
   </div>

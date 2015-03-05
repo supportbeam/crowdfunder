@@ -22,7 +22,6 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-		@user = User.first
   end
 
   def edit
