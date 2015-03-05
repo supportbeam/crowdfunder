@@ -22,7 +22,10 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-		@user = User.first
+    # @array = []
+    @thing = @campaign.pledges.map {|p| p.donation_amount}
+    @sum = @thing.inject(0) {|sum, n| sum + n}
+
   end
 
   def edit
