@@ -12,9 +12,9 @@
 <%= link_to "Home", campaigns_path %>
 	<% if current_user %>
 		<%= link_to("Logout", :logout, method: :post) %>
-		<%= link_to current_user.first_name, :profile %>
+		<%= link_to current_user.first_name, profile_path(current_user.id) %>
 	<% else %>
-		<%= link_to("Register", signup_path) %> | 
+		<%= link_to("Register", :signup) %> | 
 		<%= link_to("Login", :login) %>
 	<% end %>
 </nav>

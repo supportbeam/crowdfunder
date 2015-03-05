@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "campaigns#index"
   resources :user_sessions, only: [:create]
   resources :users, only: [:create]
-  get  'profile' => 'users#show', :as => :profile
+  get  'profile/:id' => 'users#show', :as => :profile
   get  'signup' => 'users#new', :as => :signup
   get  'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
