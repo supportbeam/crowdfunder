@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :pledges
 	has_many :backers, through: :pledges, class_name: 'Campaign'
-	has_one :owner, class_name: 'Campaign'
+	has_many :owner, class_name: 'Campaign'
 
   authenticates_with_sorcery!
 
