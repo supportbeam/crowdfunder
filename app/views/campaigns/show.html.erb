@@ -25,11 +25,8 @@
   </ul>
 
   <div class="pledges">
-  	<% @campaign.pledges.each do |pledge| %>
-  	<% sum = 0 %>
-  	<li>
-  		Total Pledges: $<%= pledge.donation_amount %> <br>
- 			<% end %> 
+		<li>
+  		Total Pledges: $<%= @sum %> <br>
   	</li>
   </div>
 
