@@ -3,6 +3,9 @@
 
 <h3>My Campaigns</h3>
 
-
 <h3>My Pledges</h3>
-
+<ul>
+	<% @user.pledges.each do |pledge| %>
+		<li>I've donated $<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
+	<% end %>
+</ul>
