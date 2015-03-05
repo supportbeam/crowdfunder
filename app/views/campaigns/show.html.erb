@@ -1,6 +1,7 @@
 <h2>
   <%= @campaign.title %> Information
 </h2>
+<p>some user: <%= @user.first_name %> </p>
 
 <p>
   Description: <%= @campaign.description %><br>
@@ -12,11 +13,25 @@
 	<ul>
 		<% @campaign.rewards.each do |reward| %>
 			<li>
+			  Amount: $<%= reward.pledge_amount %> <br>
 			  Description: <%= reward.description %> <br>
-			  Amount: $<%= reward.pledge_amount %> 
+			  <%= form_for Pledge.new do |f| %>
+			  <%= f.hidden_field :donation_amount, value: reward.pledge_amount %>
+			  <%= f.hidden_field :campaign_id, value: @campaign.id %>
+			  <%= f.hidden_field :reward_id, value: reward.id %>
+			  <%= f.submit %>
+			  <% end %>  
 		  </li>
 	  <% end %>
   </ul>
+
+  <div class="pledges">
+  	<% @campaign.pledges.each do |pledge| %>
+  	<li>
+  		Amount: $<%= pledge.donation_amount %> <br>
+ 			<% end %> 
+  	</li>
+  </div>
 
   <%= link_to "Edit", edit_campaign_path(@campaign) %>
   <%= link_to "Delete", @campaign, method: :delete, data: {confirm: "Are you sure you want to delete this campaign?"}  %>
