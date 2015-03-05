@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get  'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
   resources :campaigns
+  resources :pledges, only: [:create, :show]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
