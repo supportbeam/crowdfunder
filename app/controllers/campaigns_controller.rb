@@ -1,9 +1,8 @@
 class CampaignsController < ApplicationController
 	before_filter :load_campaign, except: [:index, :new, :create]
 
-
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.order("campaigns.title").page(params[:page])
   end
 
   def create
