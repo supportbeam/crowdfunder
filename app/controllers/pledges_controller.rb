@@ -9,6 +9,8 @@ class PledgesController < ApplicationController
 
 	def create
 		@pledge = Pledge.new(pledge_params)
+		@pledge.user = current_user
+
 		if @pledge.save
 			redirect_to campaign_path(@pledge.campaign_id), notice: "Pledge saved, dude!"
 		else
@@ -19,7 +21,7 @@ class PledgesController < ApplicationController
 
 	private
 	def pledge_params
-		params.require(:pledge).permit(:donation_amount)
+		params.require(:pledge).permit(:donation_amount, :campaign_id, :reward_id)
 	end
 
 end

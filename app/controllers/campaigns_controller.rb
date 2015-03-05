@@ -20,10 +20,9 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new
   end
 
-
-
   def show
     @campaign = Campaign.find(params[:id])
+		@user = User.first
   end
 
   def edit
@@ -46,7 +45,7 @@ class CampaignsController < ApplicationController
   end
 
 private
-	# campaign.update_attributes params[:campaign]
+
   def campaign_params
     params.require(:campaign).permit(:title, :description, :funding_goal, :start_date, :end_date, rewards_attributes: [:description, :pledge_amount, :_destroy, :id])
   end
