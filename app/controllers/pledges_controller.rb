@@ -1,7 +1,10 @@
 class PledgesController < ApplicationController
+	def find_pledge
+		Pledge.find(params[:id])
+	end
 
 	def show
-		@pledge = Pledge.find(params[:id])
+		@pledge = find_pledge
 	end
 
 	def create
