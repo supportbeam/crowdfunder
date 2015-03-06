@@ -20,4 +20,16 @@ class User < ActiveRecord::Base
   	total
   end
 
+  def campaigns_pledged_to
+		def title(id)
+			Campaign.find(id).title
+		end
+  	totals = {}
+		campaigns_pledged_to = self.pledges.map{|p| p.campaign_id}.uniq
+		campaigns_pledged_to.each do |id|
+  		totals[title(id)] = 0
+			self.pledges.where(campaign_id: id).each{|pledge| totals[title(id)] += pledge.donation_amount}
+		end
+		totals
+  end
 end
