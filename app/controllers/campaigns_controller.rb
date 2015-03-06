@@ -36,7 +36,7 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(campaign_params)
       redirect_to campaign_path(@campaign)
     else
-      render :edit
+      render('edit')
     end
   end
 

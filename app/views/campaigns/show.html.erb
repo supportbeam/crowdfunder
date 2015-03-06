@@ -1,8 +1,8 @@
 <h2>
-<%= @campaign.title %> Information
+<%= @campaign.title %> <span style="font-weight:normal"> Information </span> 
 </h2>
 <p>
-Description: <strong><%= @campaign.description %></strong><br><br>
+Description: <%= @campaign.description %><br><br>
 $<%= @sum %> has been pledged toward the goal of $<%= @campaign.funding_goal %><br><br>
 Starts: <%= @campaign.start_date %><br>
 Ends: <%= @campaign.end_date %> <br> <br>
