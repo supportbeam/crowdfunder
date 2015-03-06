@@ -21,5 +21,13 @@ class Campaign < ActiveRecord::Base
     if start_date > end_date
        errors.add(:end_date, "should not end before it starts")
     end
+
+    if start_date <= Time.now
+      errors.add(:start_date, "should not start in the past")
+    end
+
+    if end_date <= Time.now
+      errors.add(:end_date, "should not end in the past")
+    end
   end
 end
