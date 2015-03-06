@@ -1,12 +1,25 @@
 <h1>Profile</h1>
 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
 
-<h3>My Campaigns</h3>
-<%= link_to @user.owner.title, campaign_path(@user.owner.id) %>
-
-<h3>My Pledges</h3>
-<ul>
-	<% @user.pledges.each do |pledge| %>
-		<li>I've donated $<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
+<div id="my_campaigns">
+	<h3>My Campaigns</h3>
+	<% if @user.owners != [] %>
+		<% @user.owners.each do |campaign| %>
+			<%= link_to campaign.title, campaign_path(@user.owner.id) %>
+		<% end %>
+	<% else %>
+		You haven't started any campaigns!
 	<% end %>
-</ul>
+</div>
+<div id="my_pledges">
+	<h3>My Pledges</h3>
+	<% if @user.pledges != [] %>
+		<ul>
+			<% @user.pledges.each do |pledge| %>
+				<li>I've donated $<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
+			<% end %>
+		</ul>
+	<% else %>
+		You haven't made any pledges! Wtf man...
+	<% end %>
+</div>
