@@ -7,4 +7,13 @@ class Campaign < ActiveRecord::Base
     (end_date - start_date).to_i
   end
 
+  def days_left
+    days = (end_date - Date.today).to_i 
+    if days < 0
+      0
+    else
+      days.to_i
+    end
+  end
+
 end
