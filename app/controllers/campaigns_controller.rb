@@ -22,7 +22,6 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-    # @array = []
     @thing = @campaign.pledges.map {|p| p.donation_amount}
     @sum = @thing.inject(0) {|sum, n| sum + n}
 
@@ -37,7 +36,7 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(campaign_params)
       redirect_to campaign_path(@campaign)
     else
-      render :edit
+      render('edit')
     end
   end
 
