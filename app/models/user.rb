@@ -11,4 +11,13 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+
+  def pledge_total
+  	total = 0
+  	Pledge.where(user: self).each do |pledge|
+  		total += pledge.donation_amount
+  	end
+  	total
+  end
+
 end
