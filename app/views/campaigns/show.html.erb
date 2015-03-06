@@ -1,26 +1,24 @@
 <h2>
 <%= @campaign.title %> <span style="font-weight:normal"> Information </span> 
 </h2>
+
 <p>
-Description: <%= @campaign.description %><br><br>
-$<%= @sum %> has been pledged toward the goal of $<%= @campaign.funding_goal %><br><br>
-Starts: <%= @campaign.start_date %><br>
-Ends: <%= @campaign.end_date %> <br> <br>
-Rewards:<br>
-<ul>
-	<% @campaign.rewards.each do |reward| %>
-		<li>
-		  Amount: $<%= reward.pledge_amount %> <br>
-		  Description: <%= reward.description %> <br>
-		  <%= form_for Pledge.new do |f| %>
-		  <%= f.hidden_field :donation_amount, value: reward.pledge_amount %>
-		  <%= f.hidden_field :campaign_id, value: @campaign.id %>
-		  <%= f.hidden_field :reward_id, value: reward.id %>
-		  <%= f.submit %>
-		  <% end %>  
-	  </li>
-  <% end %>
-</ul>
-<%= link_to "Edit", edit_campaign_path(@campaign) %>
-<%= link_to "Delete", @campaign, method: :delete, data: {confirm: "Are you sure you want to delete this campaign?"}  %>
+  Description: <%= @campaign.description %><br>
+  Goal: $<%= @campaign.funding_goal %><br>
+  Starts: <%= @campaign.start_date %><br>
+  Ends: <%= @campaign.end_date %> <br>
+  Days left: <%= @campaign.days_left %><br>
+
+	Rewards:<br>
+	<ul>
+		<% @campaign.rewards.each do |reward| %>
+			<li>
+			  Description: <%= reward.description %> <br>
+			  Amount: $<%= reward.pledge_amount %> 
+		  </li>
+	  <% end %>
+  </ul>
+
+  <%= link_to "Edit", edit_campaign_path(@campaign) %>
+  <%= link_to "Delete", @campaign, method: :delete, data: {confirm: "Are you sure you want to delete this campaign?"}  %>
 </p>
