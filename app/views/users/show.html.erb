@@ -12,11 +12,11 @@
 	<% end %>
 </div>
 <div id="my_pledges">
-	<h3>My Pledges</h3>
+	<h3>My Pledges</h3> <h4>Total: <%= Pledge.user_total(@user) %></h4>
 	<% if @user.pledges != [] %>
 		<ul>
 			<% @user.pledges.each do |pledge| %>
-				<li>I've donated $<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
+				<li>$<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
 			<% end %>
 		</ul>
 	<% else %>
