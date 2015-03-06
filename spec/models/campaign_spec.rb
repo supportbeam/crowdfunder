@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Campaign do
   describe "#days left" do
-    let!(:campaign) {FactoryGirl.create(:campaign)}
+    let!(:campaign) {create(:campaign)}
 
     it "should return 0 if end_date has passed" do
       expect(campaign.days_available).to eq(0)
