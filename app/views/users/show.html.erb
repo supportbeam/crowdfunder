@@ -11,18 +11,6 @@
 		You haven't started any campaigns!
 	<% end %>
 </div>
-<!-- <div id="my_pledges">
-	<h3>My Pledges</h3> <h4>Total: <%= @user.pledge_total %></h4>
-	<% if @user.pledges != [] %>
-		<ul>
-			<% @user.pledges.each do |pledge| %>
-				<li><%= pledge.created_at %>$<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
-			<% end %>
-		</ul>
-	<% else %>
-		You haven't made any pledges! Wtf man...
-	<% end %>
-</div> -->
 
 <div id="my_pledges">
 	<h3>My Pledges</h3> <h4>Total: <%= @user.pledge_total %></h4>
