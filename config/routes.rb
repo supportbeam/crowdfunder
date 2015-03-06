@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get  'signup' => 'users#new', :as => :signup
   get  'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'campaign/make_pledge/:reward_id' => 'campaigns#make_pledge'
+
   resources :pledges, only: [:create, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
