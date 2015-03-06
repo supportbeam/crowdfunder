@@ -5,8 +5,8 @@ class Campaign < ActiveRecord::Base
 
   accepts_nested_attributes_for :rewards, :reject_if => :all_blank, :allow_destroy => true
 
-  def days_available
-    (end_date - start_date).to_i
+  def total
+    pledges.map {|p| p.donation_amount}.reduce(:+)
   end
 
   def days_left
@@ -17,5 +17,4 @@ class Campaign < ActiveRecord::Base
       days.to_i
     end
   end
-
 end
