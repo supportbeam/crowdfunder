@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get  'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
   resources :campaigns
+  get 'campaign/make_pledge/:reward_id' => 'campaigns#make_pledge'
+
   resources :pledges, only: [:create, :show]
 
 

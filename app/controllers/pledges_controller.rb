@@ -11,11 +11,14 @@ class PledgesController < ApplicationController
 		@pledge = Pledge.new(pledge_params)
 		@pledge.user = current_user
 
-		if @pledge.save
-			redirect_to campaign_path(@pledge.campaign_id), notice: "Pledge saved, dude!"
-		else
-			flash.now[:alert] = "Couldn't save pledge. Sorry man..."
-			render campaign_path(@pledge.campaign_id)
+		respond_to do |format|
+			if @pledge.save
+				format.html { redirect_to campaign_path(@pledge.campaign_id), notice: "Pledge saved, dude!" }
+	        format.js {}
+			else
+				format.html { render campaign_path(@pledge.campaign_id), flash.now[:alert] = "Couldn't save pledge. Sorry man..." }
+				format.js {}
+			end
 		end
 	end
 

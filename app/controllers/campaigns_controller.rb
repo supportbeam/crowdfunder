@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-	before_filter :load_campaign, except: [:index, :new, :create]
+	before_filter :load_campaign, except: [:index, :new, :create, :make_pledge]
 
 
   def index
@@ -16,24 +16,24 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def make_pledge
+    reward = Reward.find(params[:reward_id])
+    @pledge = reward.campaign.pledges.build(user: current_user, donation_amount: reward.pledge_amount, reward: reward)
+
+    @pledge.save
+  end
+
   def new
     @campaign = Campaign.new
   end
 
   def show
-    @campaign = Campaign.find(params[:id])
-    # @array = []
-    @thing = @campaign.pledges.map {|p| p.donation_amount}
-    @sum = @thing.inject(0) {|sum, n| sum + n}
-
   end
 
   def edit
-    @campaign = Campaign.find(params[:id])
   end
 
   def update
-    @campaign = Campaign.find(params[:id])
     if @campaign.update_attributes(campaign_params)
       redirect_to campaign_path(@campaign)
     else
@@ -42,7 +42,6 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    @campaign = Campaign.find(params[:id])
     @campaign.destroy
     redirect_to campaigns_path
   end
