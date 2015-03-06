@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
 
   root "campaigns#index"
+
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
   resources :user_sessions, only: [:create]
   resources :users, only: [:create]
+  resources :campaigns, :concerns => :paginatable
+  
   get  'profile/:id' => 'users#show', :as => :profile
   get  'signup' => 'users#new', :as => :signup
   get  'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
-  resources :campaigns
   get 'campaign/make_pledge/:reward_id' => 'campaigns#make_pledge'
 
   resources :pledges, only: [:create, :show]
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,9 +1,8 @@
 class CampaignsController < ApplicationController
 	before_filter :load_campaign, except: [:index, :new, :create, :make_pledge]
 
-
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.order("campaigns.title").page(params[:page])
   end
 
   def create
@@ -31,13 +30,15 @@ class CampaignsController < ApplicationController
   end
 
   def edit
+    @campaign = Campaign.find(params[:id])
   end
 
   def update
+    @campaign = Campaign.find(params[:id])
     if @campaign.update_attributes(campaign_params)
       redirect_to campaign_path(@campaign)
     else
-      render :edit
+      render('edit')
     end
   end
 

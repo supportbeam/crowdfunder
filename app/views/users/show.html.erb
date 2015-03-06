@@ -11,15 +11,32 @@
 		You haven't started any campaigns!
 	<% end %>
 </div>
+
 <div id="my_pledges">
-	<h3>My Pledges</h3>
+	<h3>My Pledges</h3> <h4>Total: <%= @user.pledge_total %></h4>
 	<% if @user.pledges != [] %>
 		<ul>
-			<% @user.pledges.each do |pledge| %>
-				<li>I've donated $<%= pledge.donation_amount %> to <%= pledge.campaign.title %></li>
+			<% @user.campaigns_pledged_to.each do |id, total| %>
+				<li class="pledge"><%= Campaign.find(id).title %>: $<%= number_with_delimiter(total, :delimiter => ",") %>
+					<ul class="pledge_details">
+						<% @user.pledges.where(campaign_id: id).each do |pledge| %>
+							<li>Donated $<%= number_with_delimiter(pledge.donation_amount, :delimiter => ",") %> on <%= pledge.created_at.strftime('%A, %b %d') %></li>
+						<% end %>
+					</ul>
+				</li>
 			<% end %>
 		</ul>
 	<% else %>
 		You haven't made any pledges! Wtf man...
 	<% end %>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('.pledge_details').hide();
+
+		$('.pledge').click(function(){
+			$(this).find('.pledge_details').slideToggle();
+		});
+	});
+</script>
