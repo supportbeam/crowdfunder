@@ -1,10 +1,21 @@
 require 'rails_helper'
 
-RSpec.Campaign do
-  describe "Days left" do
-    let(:campaign) {FactoryGirl.create(:campaign)}
+describe Campaign do
+	let(:campaign) {build(:campaign)}
 
-    it "Should return 0 if end_date has passed" do
-      expect(campaign.days_available).to eq(0)
+	describe "#ensure_dates" do
+    it "should not be valid date" do
+    	campaign.end_date = 28.days.ago
+
+    	campaign.valid?
+
+  		expect(campaign.errors.full_messages).to eq(["End date should not end before it starts", "End date should not end in the past", "Start date should not start in the past"])
+    end
+  end
+
+	describe "#days_left" do
+    it "should return not return a negative number" do
+      expect(campaign.days_left).to be >= 0
+    end
   end
 end
