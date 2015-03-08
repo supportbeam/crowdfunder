@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Crowdfunder</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-<nav id="nav">
-<%= link_to "Home", campaigns_path %>
-	<% if current_user %>
-		<%= link_to("Logout", :logout, method: :post) %>
-		<%= link_to current_user.first_name, profile_path(current_user.id) %>
-	<% else %>
-		<%= link_to("Register", :signup) %> | 
-		<%= link_to("Login", :login) %>
-	<% end %>
-</nav>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div>
-	<p id="notice"><%= flash[:notice] %></p>
-	<p id="alert"><%= flash[:alert] %></p>
-</div>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
+  <body>
+    <nav id="nav">
+      <%= link_to "Home", campaigns_path %>
+      
+      <% if current_user %>
+        <%= link_to("Logout", :logout, method: :post) %>
+        <%= link_to current_user.first_name, profile_path(current_user.id) %>
+      <% else %>
+        <%= link_to("Register", :signup) %> | 
+        <%= link_to("Login", :login) %>
+      <% end %>
+    </nav>
+    <div>
+      <p id="notice"><%= flash[:notice] %></p>
+      <p id="alert"><%= flash[:alert] %></p>
+    </div>
 
-<%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
 </html>
