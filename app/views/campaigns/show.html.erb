@@ -1,20 +1,27 @@
 <h2>
-<%= @campaign.title %> <span style="font-weight:normal"> Information </span> 
+  <%= @campaign.title %> Information
 </h2>
 
 <p>
-  Description: <%= @campaign.description %><br>
-  Goal: $<%= @campaign.funding_goal %><br>
-  Starts: <%= @campaign.start_date %><br>
-  Ends: <%= @campaign.end_date %> <br>
-  Days left: <%= @campaign.days_left %><br>
+  <div id="campaign-info">
+    <%= render @campaign %>
+  </div>
 
 	Rewards:<br>
+  <div id="thanks" style='display: none'>Pledge Committed! Yaaay!</div>
 	<ul>
 		<% @campaign.rewards.each do |reward| %>
 			<li>
+			  Amount: $<%= reward.pledge_amount %> <br>
 			  Description: <%= reward.description %> <br>
-			  Amount: $<%= reward.pledge_amount %> 
+        <button data-reward_id="<%= reward.id %>">Donate!</button>
+        <!-- 
+			  <%= form_for(Pledge.new, :remote => true) do |f| %>
+			  <%= f.hidden_field :donation_amount, value: reward.pledge_amount %>
+			  <%= f.hidden_field :campaign_id, value: @campaign.id %>
+			  <%= f.hidden_field :reward_id, value: reward.id %>
+			  <%= f.submit %>
+			  <% end %>   -->
 		  </li>
 	  <% end %>
   </ul>

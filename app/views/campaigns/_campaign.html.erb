@@ -1,0 +1,9 @@
+    Description: <%= campaign.description %><br>
+    Goal: $<%= campaign.funding_goal %><br>
+    Starts: <%= campaign.start_date %><br>
+    Ends: <%= campaign.end_date %> <br> <br>
+
+    <li>
+      Total Pledges: <%= number_to_currency(campaign.total) %> <br>
+    </li>
+

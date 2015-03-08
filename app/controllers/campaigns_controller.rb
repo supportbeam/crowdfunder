@@ -1,9 +1,8 @@
 class CampaignsController < ApplicationController
-	before_filter :load_campaign, except: [:index, :new, :create]
-
+	before_filter :load_campaign, except: [:index, :new, :create, :make_pledge]
 
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.order("campaigns.title").page(params[:page])
   end
 
   def create
@@ -16,15 +15,18 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def make_pledge
+    reward = Reward.find(params[:reward_id])
+    @pledge = reward.campaign.pledges.build(user: current_user, donation_amount: reward.pledge_amount, reward: reward)
+
+    @pledge.save
+  end
+
   def new
     @campaign = Campaign.new
   end
 
   def show
-    @campaign = Campaign.find(params[:id])
-    @thing = @campaign.pledges.map {|p| p.donation_amount}
-    @sum = @thing.inject(0) {|sum, n| sum + n}
-
   end
 
   def edit
@@ -41,7 +43,6 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    @campaign = Campaign.find(params[:id])
     @campaign.destroy
     redirect_to campaigns_path
   end
